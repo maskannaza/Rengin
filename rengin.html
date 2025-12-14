@@ -1,187 +1,324 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ku" dir="rtl">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#0b0b0f" />
+  <title>ڕەنگین | Rangin</title>
 
-  <meta name="title" content="ڕەنگین - داگرتنی ڤیدیۆ/دەنگ لە هەموو سایتەکان" />
-  <meta name="description" content="ڕەنگین: داگرتنی ڤیدیۆ و دەنگ بە خێرایی لە یوتیوب، فەیسبووک، ئینستاگرام، تیکتۆک و زیاتر." />
-  <meta name="keywords" content="ڕەنگین, داگرتنی ڤیدیۆ, داگرتنی دەنگ, downloader, video, audio" />
-  <meta name="robots" content="index,follow" />
-  <meta name="author" content="Rangin" />
-
-  <meta property="og:title" content="ڕەنگین - داگرتنی ڤیدیۆ/دەنگ" />
-  <meta property="og:description" content="داگرتنی ڤیدیۆ و دەنگ بە شێوازێکی جوان و خێرا." />
-  <meta property="og:image" content="/VKrDownloader/logo.png" />
-  <meta property="og:url" content="/" />
-  <meta property="og:type" content="website" />
-
-  <title>ڕەنگین | Download Video / Audio</title>
-
-  <link rel="icon" href="/VKrDownloader/logo.png" sizes="32x32" type="image/png" />
-  <link rel="manifest" href="/VKrDownloader/manifest.webmanifest" />
-
-  <!-- Bootstrap 5 فقط -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-
-  <!-- Kurdish/Persian-friendly fonts -->
+  <!-- Font (supports Kurdish/Arabic/Persian) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.2.3/purify.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <!-- Background glow layer -->
-  <div class="bg-glow"></div>
+  <!-- APP WRAP -->
+  <div class="app">
 
-  <!-- Top App Bar -->
-  <header class="appbar">
-    <div class="container d-flex align-items-center justify-content-between gap-3">
-      <div class="d-flex align-items-center gap-3">
-        <div class="brand-badge">
-          <img src="https://raw.githubusercontent.com/theofficialvkr/VKrDownloader/refs/heads/main/logo.png" alt="Rangin" />
-        </div>
-        <div class="brand-text">
-          <div class="brand-title">ڕەنگین</div>
-          <div class="brand-subtitle">داگرتنی ڤیدیۆ / دەنگ بە شێوازێکی جوان</div>
-        </div>
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <button class="tb-btn" id="helpBtn" aria-label="Help">
+        <span class="tb-ic">ⓘ</span>
+        <span data-i18n="help">یارمەتی</span>
+      </button>
+
+      <div class="brand">
+        <div class="brand-wave" aria-hidden="true"></div>
+        <img class="brand-logo" src="./logo.png" alt="ڕەنگین" />
+        <div class="brand-wave" aria-hidden="true"></div>
       </div>
 
-      <nav class="appnav d-none d-md-flex align-items-center gap-2">
-        <a class="nav-pill active" href="/VKrDownloader">سەرەکی</a>
-        <a class="nav-pill" href="https://github.com/theofficialvkr/VKrDownloader" target="_blank" rel="noopener">خزمەتگوزاری</a>
-        <a class="nav-pill" href="mailto:contactvkr@yahoo.com">پەیوەندی</a>
-      </nav>
-    </div>
-  </header>
+      <button class="tb-btn" id="shareBtn" aria-label="Share">
+        <span data-i18n="share">Share</span>
+        <span class="tb-ic">⤴︎</span>
+      </button>
+    </header>
 
-  <main class="container my-4 my-md-5">
-    <!-- Hero Card -->
-    <section class="hero-card">
-      <div class="hero-top">
-        <div>
-          <h1 class="hero-title">داگرتن بە یەک کلیک</h1>
-          <p class="hero-desc">
-            لینکی ڤیدیۆ/رێلز/پۆستەکە دابنێ و <span class="em">داگرتن</span> بکە.
-            پشتگیری: یوتیوب، فەیسبووک، ئینستاگرام، تیکتۆک، X (توییتر) و زیاتر.
-          </p>
-        </div>
+    <!-- CONTENT -->
+    <main class="main">
 
-        <div class="chips">
-          <span class="chip">🎵 دەنگ</span>
-          <span class="chip">🎬 ڤیدیۆ</span>
-          <span class="chip">⚡ خێرا</span>
-          <span class="chip">🛡️ پاک و سەلامەت</span>
-        </div>
-      </div>
-
-      <!-- Input -->
-      <div class="download-box">
-        <div class="input-wrap">
-          <label class="input-label" for="inputUrl">لینک دابنێ</label>
-          <input id="inputUrl" type="url" class="form-control input-modern" placeholder="https://..." />
-        </div>
-
-        <button id="downloadBtn" type="button" class="btn btn-download">
-          <span class="btn-ic">⬇️</span>
-          داگرتن
-        </button>
-      </div>
-
-      <!-- Loading -->
-      <div id="loading" class="loading-area" style="display:none;">
-        <div class="equalizer">
-          <span></span><span></span><span></span><span></span><span></span>
-          <span></span><span></span><span></span><span></span><span></span>
-        </div>
-        <div class="loading-text">تکایە چاوەڕێ بکە... داتاکان دەهێنین</div>
-      </div>
-
-      <!-- Result -->
-      <div id="container" class="result-card" style="display:none;">
-        <div class="result-grid">
-          <div class="thumb-wrap">
-            <div id="thumb" class="thumb"></div>
+      <!-- SOURCES TAB -->
+      <section class="tab tab-active" id="tab-sources">
+        <!-- Banner -->
+        <div class="banner">
+          <div class="banner-left">
+            <div class="banner-title" data-i18n="bannerTitle">ڕەنگین</div>
+            <div class="banner-sub" data-i18n="bannerSub">داونلۆدی ڤیدیۆ و دەنگ، خێرا و جوان</div>
           </div>
 
-          <div class="meta-wrap">
-            <div id="title" class="r-title"></div>
-            <div id="uploader" class="r-sub"></div>
-
-            <div class="r-row">
-              <div id="duration" class="pill"></div>
-              <div id="extractor" class="pill"></div>
-            </div>
-
-            <div id="description" class="r-desc"></div>
-
-            <div class="downloads">
-              <div id="downloadURL" class="small-note"></div>
-              <div id="download" class="download-actions"></div>
+          <div class="banner-mid">
+            <div class="banner-card">
+              <img src="./logo.png" alt="logo" />
             </div>
           </div>
+
+          <div class="banner-right">
+            <button class="btn btn-soft" id="loginBtn" data-i18n="loginGoogle">چوونەژوورەوە بە گووگڵ</button>
+            <button class="btn btn-soft danger hidden" id="logoutBtn" data-i18n="logout">دەرچوون</button>
+          </div>
         </div>
-      </div>
-    </section>
 
-    <!-- Info section -->
-    <section class="info-card mt-4">
-      <div class="info-head">
-        <div class="info-title">چۆن کار دەکات؟</div>
-        <div class="info-sub">سێ هەنگاو، بەسادەیی</div>
-      </div>
-
-      <div class="steps">
-        <div class="step">
-          <div class="step-ic">1</div>
-          <div class="step-t">لینکەکە دابنێ</div>
-          <div class="step-d">لینکی ڤیدیۆ/رێلز/پۆست لێرە بنووسە.</div>
+        <!-- Search -->
+        <div class="searchRow">
+          <div class="searchBox">
+            <input id="inputUrl" type="url" inputmode="url" autocomplete="off"
+              placeholder="Search YouTube or type a URL" />
+            <button class="pasteBtn" id="pasteBtn" title="Paste">Paste</button>
+          </div>
+          <button class="goBtn" id="downloadBtn" title="Go">➜</button>
         </div>
-        <div class="step">
-          <div class="step-ic">2</div>
-          <div class="step-t">داگرتن کلیک بکە</div>
-          <div class="step-d">ئێمە داتاکان دەهێنین و کوالیتیەکان دەردەکەین.</div>
+
+        <!-- Quick Buttons -->
+        <div class="quickRow">
+          <button class="quickBtn" id="ytBtn">
+            <span class="qic yt">▶</span>
+            <span>YouTube</span>
+          </button>
+          <button class="quickBtn" id="trendBtn">
+            <span class="qic fire">🔥</span>
+            <span data-i18n="trending">Trending</span>
+          </button>
         </div>
-        <div class="step">
-          <div class="step-ic">3</div>
-          <div class="step-t">هەڵبژاردن و داگرتن</div>
-          <div class="step-d">هەر کوالیتیێک دەتەوێت هەڵبژێرە و دابگرە.</div>
+
+        <!-- Error -->
+        <div id="error" class="errorBox hidden"></div>
+
+        <!-- Loading -->
+        <div id="loading" class="loading hidden">
+          <div class="eq">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <div class="loadingText" data-i18n="loading">تکایە چاوەڕێ بکە...</div>
         </div>
-      </div>
-    </section>
-  </main>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between gap-2">
-      <div class="foot-left">
-        <span class="foot-brand">ڕەنگین</span>
-        <span class="dot">•</span>
-        <span class="foot-muted">هەموو مافەکان پارێزراون</span>
-      </div>
-      <div class="foot-right d-flex gap-2">
-        <a class="foot-link" href="/VKrDownloader">سەرەکی</a>
-        <a class="foot-link" href="https://instagram.com/theofficialvkr" target="_blank" rel="noopener">فۆڵۆو</a>
-        <a class="foot-link" href="mailto:contactvkr@yahoo.com">پەیوەندی</a>
-      </div>
-    </div>
-  </footer>
+        <!-- Result -->
+        <div id="container" class="result hidden">
+          <div id="thumb" class="thumb"></div>
+          <div id="title" class="rTitle"></div>
+          <div class="rMeta">
+            <div id="uploader"></div>
+            <div id="duration"></div>
+            <div id="extractor"></div>
+          </div>
+          <div id="description" class="rDesc"></div>
+          <div id="downloadURL" class="rSmall"></div>
+          <div id="download" class="downloadWrap"></div>
 
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js').then(() => console.log('Service Worker Registered'));
-    }
-  </script>
+          <div class="historyHint">
+            <span data-i18n="historyHint">هەر داونلۆدێک دەچێتە هیستۆری تۆ (Firebase)</span>
+          </div>
+        </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Sources list -->
+        <div class="listCard">
+          <div class="listTitle" data-i18n="sources">Sources</div>
+          <div class="list">
+            <button class="listItem" data-fill="https://www.google.com/">
+              <span class="ic google">G</span>
+              <span>Google</span>
+              <span class="chev">›</span>
+            </button>
+            <button class="listItem" data-fill="https://www.instagram.com/">
+              <span class="ic ig">⌁</span>
+              <span>Instagram</span>
+              <span class="chev">›</span>
+            </button>
+            <button class="listItem" data-fill="https://x.com/">
+              <span class="ic x">X</span>
+              <span>X</span>
+              <span class="chev">›</span>
+            </button>
+            <button class="listItem" data-fill="https://www.facebook.com/">
+              <span class="ic fb">f</span>
+              <span>Facebook</span>
+              <span class="chev">›</span>
+            </button>
+            <button class="listItem" data-fill="https://www.tiktok.com/">
+              <span class="ic tt">♪</span>
+              <span>TikTok</span>
+              <span class="chev">›</span>
+            </button>
+          </div>
+        </div>
+      </section>
 
-  <!-- Keep your existing logic files -->
-  <script src="https://vkrdownloader.org/static/js/devdata.js"></script>
-  <script src="javascript.js"></script>
+      <!-- FILES TAB -->
+      <section class="tab" id="tab-files">
+        <div class="pageHead">
+          <div class="pageTitle" data-i18n="files">Files</div>
+          <button class="btn btn-mini" id="createFolderBtn" data-i18n="createFolder">Create Folder</button>
+        </div>
+
+        <div class="searchMini">
+          <input id="filesSearch" type="text" placeholder="Search" />
+        </div>
+
+        <div class="listCard">
+          <div class="listTitle" data-i18n="folders">Folders</div>
+          <div class="list" id="foldersList">
+            <!-- dynamic -->
+          </div>
+        </div>
+
+        <div class="listCard">
+          <div class="listTitle" data-i18n="history">Download History</div>
+          <div class="list" id="historyList">
+            <!-- dynamic -->
+          </div>
+        </div>
+      </section>
+
+      <!-- PLAYLISTS TAB -->
+      <section class="tab" id="tab-playlists">
+        <div class="pageHead">
+          <div class="pageTitle" data-i18n="playlists">Playlists</div>
+          <button class="btn btn-mini" id="createPlaylistBtn" data-i18n="createPlaylist">Create Playlist</button>
+        </div>
+
+        <div class="searchMini">
+          <input id="plSearch" type="text" placeholder="Search" />
+        </div>
+
+        <div class="emptyState" id="playlistEmpty" data-i18n="noPlaylists">No Playlists</div>
+
+        <div class="listCard">
+          <div class="listTitle" data-i18n="myPlaylists">My Playlists</div>
+          <div class="list" id="playlistsList"></div>
+        </div>
+      </section>
+
+      <!-- MORE TAB -->
+      <section class="tab" id="tab-more">
+        <div class="moreTitle" data-i18n="more">More</div>
+
+        <div class="profileCard">
+          <div class="pfRow">
+            <img class="pfAvatar" id="userPhoto" src="./logo.png" alt="user" />
+            <div class="pfInfo">
+              <div class="pfName" id="userName">—</div>
+              <div class="pfEmail" id="userEmail">—</div>
+            </div>
+            <span class="pfTag" id="userStatus">Guest</span>
+          </div>
+        </div>
+
+        <div class="listCard">
+          <div class="listTitle" data-i18n="subscription">SUBSCRIPTION</div>
+          <div class="list">
+            <button class="listItem">
+              <span class="ic crown">♛</span>
+              <span data-i18n="removeAds">Subscribe and Remove Ads</span>
+              <span class="chev">›</span>
+            </button>
+            <button class="listItem">
+              <span class="ic restore">↻</span>
+              <span data-i18n="restore">Restore Purchase</span>
+              <span class="chev">›</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="listCard">
+          <div class="listTitle" data-i18n="general">GENERAL</div>
+          <div class="list">
+            <button class="listItem" id="supportBtn">
+              <span class="ic headset">🎧</span>
+              <span data-i18n="support">Technical Support</span>
+              <span class="chev">›</span>
+            </button>
+            <button class="listItem" id="rateBtn">
+              <span class="ic star">☆</span>
+              <span data-i18n="rate">Rate App</span>
+              <span class="chev">›</span>
+            </button>
+            <button class="listItem" id="shareAppBtn">
+              <span class="ic share">⤴︎</span>
+              <span data-i18n="shareApp">Share App</span>
+              <span class="chev">›</span>
+            </button>
+            <button class="listItem" id="ourAppsBtn">
+              <span class="ic apps">▦</span>
+              <span data-i18n="ourApps">Our Apps</span>
+              <span class="chev">›</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="listCard">
+          <div class="listTitle" data-i18n="settings">SETTINGS</div>
+          <div class="list">
+            <button class="listItem" id="langBtn">
+              <span class="ic abc">Abc</span>
+              <span data-i18n="changeLang">Change Language / تغيير اللغة</span>
+              <span class="chev">›</span>
+            </button>
+
+            <div class="listItem rowSwitch">
+              <div class="rowSwitchLeft">
+                <span class="ic link">🔗</span>
+                <span data-i18n="autoPaste">Auto Paste Links</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="autoPasteToggle" checked />
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <div class="listItem rowSwitch">
+              <div class="rowSwitchLeft">
+                <span class="ic lock">🔒</span>
+                <span data-i18n="lockApp">Lock Application</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="lockToggle" />
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <button class="listItem" id="clearCacheBtn">
+              <span class="ic trash">🗑</span>
+              <span>
+                <div data-i18n="clearCache">Clear Browser Cache & Cookies</div>
+                <div class="small" data-i18n="clearCacheNote">It won’t affect your saved files</div>
+              </span>
+              <span class="chev">›</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="moreActions">
+          <button class="btn btn-soft w100" id="loginBtn2" data-i18n="loginGoogle">چوونەژوورەوە بە گووگڵ</button>
+          <button class="btn btn-soft danger w100 hidden" id="logoutBtn2" data-i18n="logout">دەرچوون</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- BOTTOM NAV -->
+    <nav class="bottomNav">
+      <button class="bn-item active" data-tab="sources">
+        <div class="bn-ic">☁︎</div>
+        <div class="bn-t" data-i18n="sources">Sources</div>
+      </button>
+      <button class="bn-item" data-tab="files">
+        <div class="bn-ic">📁</div>
+        <div class="bn-t" data-i18n="files">Files</div>
+      </button>
+      <button class="bn-item" data-tab="playlists">
+        <div class="bn-ic">▶︎</div>
+        <div class="bn-t" data-i18n="playlists">Playlists</div>
+      </button>
+      <button class="bn-item" data-tab="more">
+        <div class="bn-ic">•••</div>
+        <div class="bn-t" data-i18n="more">More</div>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Firebase (Modular v9) -->
+  <script type="module" src="app.js"></script>
 </body>
 </html>
