@@ -25,6 +25,32 @@ body{
   margin:0;
 }
 
+.error-box{
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(244,63,94,.12);
+  color: rgba(255,255,255,.92);
+  line-height: 1.9;
+  font-weight: 600;
+}
+
+.dlbtns{
+  border:0;
+  color:#fff;
+  font-weight:900;
+  padding: 12px 14px;
+  border-radius: 14px;
+  margin: 8px 8px 0 0;
+  min-width: 170px;
+  box-shadow: 0 14px 30px rgba(0,0,0,.30);
+  border: 1px solid rgba(255,255,255,.12);
+  transition: transform .12s ease, filter .12s ease;
+}
+.dlbtns:hover{ filter: brightness(1.08); }
+.dlbtns:active{ transform: translateY(1px) scale(.99); }
+
 /* soft glow overlay */
 .bg-glow{
   position:fixed;
