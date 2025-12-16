@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="ku" dir="rtl">
 <head>
-  <meta charset="utf-8" >
-  <meta name="viewport" content="width=device-width, initial-scale=1" >
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AriGaming — مەتەڵ و یاری</title>
 
   <!-- Kurdish-friendly font -->
@@ -115,6 +115,12 @@
       padding:4px 8px;
       border-radius:999px;
     }
+    .userAvatar{
+      width:28px;height:28px;
+      border-radius:50%;
+      object-fit:cover;
+      border:2px solid rgba(255,255,255,.15);
+    }
 
     /* Page title */
     .pageTitle{
@@ -183,6 +189,11 @@
       background:
         radial-gradient(220px 220px at 70% 15%, rgba(168,85,247,.25), transparent 60%),
         linear-gradient(180deg, rgba(88,28,135,.65), rgba(49,10,94,.75));
+    }
+    .homeBox.leaderBox{
+      background:
+        radial-gradient(220px 220px at 50% 15%, rgba(245,211,139,.20), transparent 60%),
+        linear-gradient(180deg, rgba(180,120,40,.55), rgba(100,60,20,.70));
     }
 
     .homeBox::before{
@@ -467,6 +478,12 @@
         radial-gradient(260px 200px at 20% 20%, rgba(245,211,139,.10), transparent 60%),
         linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
     }
+    .hero.golden{
+      background:
+        radial-gradient(320px 220px at 75% 10%, rgba(245,211,139,.22), transparent 58%),
+        radial-gradient(260px 200px at 20% 20%, rgba(180,120,40,.18), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+    }
     .hero::after{
       content:"";
       position:absolute; inset:-2px;
@@ -714,44 +731,30 @@
       font-size:13px;
       margin-bottom:20px;
     }
-    .authInput{
+    .googleBtn{
       width:100%;
       padding:14px 16px;
       border-radius:16px;
-      background:rgba(0,0,0,.25);
-      border:1px solid rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.08);
       color:var(--text);
-      font-size:16px;
-      font-weight:700;
-      margin-bottom:12px;
-      outline:none;
-    }
-    .authInput:focus{border-color:var(--blue2)}
-    .authInput::placeholder{color:rgba(233,238,252,.40)}
-    .authBtn{
-      width:100%;
-      padding:14px;
-      border-radius:16px;
-      border:none;
-      background: linear-gradient(180deg, var(--blue), #2563eb);
-      color:#fff;
       font-size:15px;
-      font-weight:1000;
+      font-weight:900;
       cursor:pointer;
-      margin-top:8px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      transition: all .18s ease;
     }
-    .authBtn:disabled{opacity:.6;cursor:not-allowed}
-    .authSwitch{
-      text-align:center;
-      margin-top:16px;
-      color:rgba(233,238,252,.60);
-      font-weight:700;
-      font-size:13px;
+    .googleBtn:hover{
+      background: rgba(255,255,255,.12);
+      border-color: rgba(255,255,255,.22);
     }
-    .authSwitch a{
-      color:var(--blue2);
-      cursor:pointer;
-      text-decoration:underline;
+    .googleBtn:active{transform:translateY(1px)}
+    .googleBtn svg{
+      width:20px;
+      height:20px;
     }
     .authError{
       background:rgba(239,68,68,.15);
@@ -765,6 +768,19 @@
       display:none;
     }
     .authError.show{display:block}
+    .authClose{
+      margin-top:16px;
+      text-align:center;
+    }
+    .authClose button{
+      background:transparent;
+      border:none;
+      color:rgba(233,238,252,.50);
+      font-weight:700;
+      font-size:13px;
+      cursor:pointer;
+    }
+    .authClose button:hover{color:rgba(233,238,252,.70)}
 
     /* Modal */
     .modal{
@@ -882,6 +898,127 @@
     .dropItem i{width:18px;text-align:center;color:var(--blue2)}
     .dropItem.danger{color:#fca5a5}
     .dropItem.danger i{color:#fca5a5}
+
+    /* Leaderboard Styles */
+    .leaderList{
+      display:grid;
+      gap:10px;
+      margin-top:14px;
+    }
+    .leaderItem{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      padding:14px 16px;
+      border-radius:18px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.10);
+      transition: all .18s ease;
+    }
+    .leaderItem:hover{
+      background:rgba(255,255,255,.08);
+      border-color:rgba(245,211,139,.20);
+    }
+    .leaderItem.top1{
+      background: linear-gradient(135deg, rgba(245,211,139,.15), rgba(180,120,40,.10));
+      border-color:rgba(245,211,139,.30);
+    }
+    .leaderItem.top2{
+      background: linear-gradient(135deg, rgba(192,192,192,.12), rgba(128,128,128,.08));
+      border-color:rgba(192,192,192,.25);
+    }
+    .leaderItem.top3{
+      background: linear-gradient(135deg, rgba(205,127,50,.12), rgba(140,80,30,.08));
+      border-color:rgba(205,127,50,.25);
+    }
+    .leaderItem.current{
+      border-color:var(--blue2);
+      box-shadow: 0 0 0 1px rgba(96,165,250,.25);
+    }
+    .leaderRank{
+      width:36px;height:36px;
+      border-radius:12px;
+      display:grid;place-items:center;
+      font-weight:1000;
+      font-size:14px;
+      flex-shrink:0;
+      background:rgba(0,0,0,.25);
+      border:1px solid rgba(255,255,255,.10);
+    }
+    .leaderRank.gold{
+      background: linear-gradient(180deg, rgba(245,211,139,.95), rgba(176,139,88,.95));
+      color:#2a1c08;
+      border:none;
+    }
+    .leaderRank.silver{
+      background: linear-gradient(180deg, rgba(192,192,192,.90), rgba(150,150,150,.90));
+      color:#333;
+      border:none;
+    }
+    .leaderRank.bronze{
+      background: linear-gradient(180deg, rgba(205,127,50,.90), rgba(160,90,40,.90));
+      color:#fff;
+      border:none;
+    }
+    .leaderAvatar{
+      width:40px;height:40px;
+      border-radius:50%;
+      object-fit:cover;
+      border:2px solid rgba(255,255,255,.15);
+      flex-shrink:0;
+    }
+    .leaderAvatarPlaceholder{
+      width:40px;height:40px;
+      border-radius:50%;
+      background:rgba(255,255,255,.10);
+      display:grid;place-items:center;
+      color:rgba(233,238,252,.60);
+      font-size:18px;
+      flex-shrink:0;
+    }
+    .leaderInfo{
+      flex:1;
+      min-width:0;
+    }
+    .leaderName{
+      font-weight:900;
+      font-size:14px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .leaderMeta{
+      font-size:11px;
+      color:rgba(233,238,252,.55);
+      font-weight:700;
+      margin-top:2px;
+    }
+    .leaderScore{
+      text-align:left;
+      flex-shrink:0;
+    }
+    .leaderCorrect{
+      font-size:18px;
+      font-weight:1000;
+      color:var(--gold);
+    }
+    .leaderLabel{
+      font-size:10px;
+      color:rgba(233,238,252,.50);
+      font-weight:700;
+    }
+    .leaderLoading{
+      text-align:center;
+      padding:40px 20px;
+      color:rgba(233,238,252,.60);
+      font-weight:700;
+    }
+    .leaderEmpty{
+      text-align:center;
+      padding:40px 20px;
+      color:rgba(233,238,252,.50);
+      font-weight:700;
+    }
   </style>
 </head>
 
@@ -900,7 +1037,8 @@
       </div>
 
       <div class="userPill" id="userPill" onclick="toggleUserDropdown()">
-        <i class="fa-solid fa-user"></i>
+        <img class="userAvatar" id="userAvatar" src="" alt="" style="display:none">
+        <i class="fa-solid fa-user" id="userIcon"></i>
         <small id="userNameDisplay">چوونەژوورەوە</small>
         <span class="lvlBadge" id="userLvlBadge" style="display:none">Lvl 1</span>
       </div>
@@ -947,6 +1085,18 @@
               <div class="boxInfo">
                 <div class="boxTitle">یاری زانیاری</div>
                 <div class="boxDesc">ئاست بە ئاست پرسیارە قووڵەکان بوەڵامبدەرەوە و خاڵ کۆبکەرەوە</div>
+              </div>
+              <div class="boxArrow"><i class="fa-solid fa-chevron-left"></i></div>
+            </div>
+          </div>
+
+          <!-- Leaderboard Box -->
+          <div class="homeBox leaderBox" onclick="goPage('leaderboard')">
+            <div class="boxContent">
+              <div class="boxIcon">🏆</div>
+              <div class="boxInfo">
+                <div class="boxTitle">پلەبەندی</div>
+                <div class="boxDesc">ببینە کێ لە سەرەوەی لیستەکەدایە و ڕکابەری بکە</div>
               </div>
               <div class="boxArrow"><i class="fa-solid fa-chevron-left"></i></div>
             </div>
@@ -1035,6 +1185,40 @@
       <div id="quizContainer"></div>
     </section>
 
+    <!-- LEADERBOARD PAGE -->
+    <section class="page" id="page-leaderboard">
+      <div class="pageTitle">پلەبەندی</div>
+
+      <div class="hero golden">
+        <div class="heroTop">
+          <div>
+            <p class="heroTitle">پلەبەندی یاریزانەکان</p>
+            <p class="heroDesc">
+              لیستی سەرەوەی یاریزانەکان بەپێی ژمارەی وەڵامی ڕاست.
+              یاری بکە و بچۆ سەرەوەی لیستەکە!
+            </p>
+          </div>
+          <div class="heroIcon"><i class="fa-solid fa-trophy"></i></div>
+        </div>
+      </div>
+
+      <div class="section" style="border-top:none; padding-top:0; margin-top:14px">
+        <div class="sectionHead">
+          <div class="left">
+            <i class="fa-solid fa-ranking-star"></i>
+            <span>سەرەوەی ١٠</span>
+          </div>
+          <button class="miniBtn" onclick="loadLeaderboard()"><i class="fa-solid fa-refresh"></i> نوێکردنەوە</button>
+        </div>
+
+        <div class="leaderList" id="leaderList">
+          <div class="leaderLoading">
+            <i class="fa-solid fa-spinner fa-spin"></i> چاوەڕوان بە...
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ABOUT -->
     <section class="page" id="page-about">
       <div class="pageTitle">دەربارە</div>
@@ -1066,6 +1250,7 @@
       <button class="navBtn active" data-go="home" title="Home"><i class="fa-solid fa-house"></i></button>
       <button class="navBtn" data-go="matal" title="Matal"><i class="fa-solid fa-scroll"></i></button>
       <button class="navBtn" data-go="quiz" title="Quiz"><i class="fa-solid fa-gamepad"></i></button>
+      <button class="navBtn" data-go="leaderboard" title="Leaderboard"><i class="fa-solid fa-trophy"></i></button>
       <button class="navBtn" data-go="about" title="About"><i class="fa-regular fa-user"></i></button>
     </div>
   </nav>
@@ -1084,20 +1269,23 @@
   <!-- Auth Modal -->
   <div class="authOverlay" id="authOverlay" onclick="hideAuth(event)">
     <div class="authCard" onclick="event.stopPropagation()">
-      <div class="authTitle" id="authTitle">چوونەژوورەوە</div>
-      <div class="authDesc" id="authDesc">بۆ پاشەکەوتکردنی ئاست و خاڵەکانت، چوونەژوورەوە</div>
+      <div class="authTitle">چوونەژوورەوە</div>
+      <div class="authDesc">بۆ پاشەکەوتکردنی ئاست و خاڵەکانت، بە گووگڵ بچۆرە ژوورەوە</div>
 
       <div class="authError" id="authError"></div>
 
-      <div id="authForm">
-        <input type="email" class="authInput" id="authEmail" placeholder="ئیمەیڵ" autocomplete="email">
-        <input type="password" class="authInput" id="authPassword" placeholder="وشەی نهێنی" autocomplete="current-password">
-        <input type="text" class="authInput" id="authUsername" placeholder="ناوی بەکارهێنەر" style="display:none" autocomplete="username">
-        <button class="authBtn" id="authBtn" onclick="handleAuth()">چوونەژوورەوە</button>
-      </div>
+      <button class="googleBtn" id="googleBtn" onclick="handleGoogleLogin()">
+        <svg viewBox="0 0 24 24">
+          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+        </svg>
+        چوونەژوورەوە بە گووگڵ
+      </button>
 
-      <div class="authSwitch" id="authSwitch">
-        هەژمارت نیە؟ <a onclick="toggleAuthMode()">دروستکردنی هەژمار</a>
+      <div class="authClose">
+        <button onclick="hideAuth()">داخستن</button>
       </div>
     </div>
   </div>
@@ -1119,6 +1307,7 @@
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
     const db = firebase.firestore();
+    const googleProvider = new firebase.auth.GoogleAuthProvider();
 
     // =========================================
     // DATA — مەتەڵ
@@ -1133,7 +1322,7 @@
       { id:"m7",  emoji:"🦅", title:"بەرزبوون", cat:"هەوڵ", text:"ئەگەر دەتەوێت بەرز ببیت، سەیری بالەکانت بکە؛ نە سەیری سایەی خۆت.", views: 890 },
       { id:"m8",  emoji:"🤍", title:"ئێوە و خۆتان", cat:"ڕەوش", text:"خۆت ڕێز بدە؛ کە خۆت ڕێز نەدەیت، چاوەڕێی ڕێزی خەڵک مەکە.", views: 1710 },
       { id:"m9",  emoji:"👀", title:"بینین", cat:"زانیاری", text:"هەندێ شت بە چاوت دەبینیت، بەڵام بە تێگەیشتن دەزانیت. چاوی دڵ گەورەترە.", views: 640 },
-      { id:"m10", emoji:"🧊", title:"هێواشی", cat:"ڕەوش", text:"هێواشی هێزیە؛ کەسێک کە هێواش��، زۆرجار بەرەوپێش دەچێت بە دڵنیایی.", views: 1210 },
+      { id:"m10", emoji:"🧊", title:"هێواشی", cat:"ڕەوش", text:"هێواشی هێزیە؛ کەسێک کە هێواشە، زۆرجار بەرەوپێش دەچێت بە دڵنیایی.", views: 1210 },
       { id:"m11", emoji:"⚖️", title:"دادپەروەری", cat:"کۆمەڵگا", text:"دادپەروەری لە قسەدا نیە؛ لە کرداردا دەردەکەوێت. کردارت قسەی تۆیە.", views: 830 },
       { id:"m12", emoji:"🌙", title:"ئومێد", cat:"ئومێد", text:"ئومێد وەک مانگ وایە؛ جارێ دەردەکەوێت، جارێ شاردەبێت، بەڵام نابێت.", views: 1980 },
       { id:"m13", emoji:"🪞", title:"خۆبینین", cat:"ڕەوش", text:"ئەگەر هەڵەی خۆت نەبینیت، هەڵەی کەسێکی تر زۆر بە دڵت دەچێت.", views: 720 },
@@ -1194,12 +1383,12 @@
     let activeCat = "هەموو";
     let query = "";
     let matalList = [...matal];
-    let authMode = "login"; // login or register
 
     // User state
     let currentUser = null;
     let userData = {
       username: "",
+      photoURL: "",
       level: 1,
       xp: 0,
       correctAnswers: 0,
@@ -1235,6 +1424,9 @@
 
       if(key === "quiz") {
         renderQuiz();
+      }
+      if(key === "leaderboard") {
+        loadLeaderboard();
       }
     }
 
@@ -1553,6 +1745,85 @@
     }
 
     // =========================================
+    // Leaderboard Functions
+    // =========================================
+    async function loadLeaderboard() {
+      const container = el("#leaderList");
+      container.innerHTML = `
+        <div class="leaderLoading">
+          <i class="fa-solid fa-spinner fa-spin"></i> چاوەڕوان بە...
+        </div>
+      `;
+
+      try {
+        const snapshot = await db.collection("users")
+          .orderBy("correctAnswers", "desc")
+          .limit(10)
+          .get();
+
+        if (snapshot.empty) {
+          container.innerHTML = `
+            <div class="leaderEmpty">
+              <i class="fa-solid fa-users-slash"></i><br>
+              هیچ یاریزانێک نەدۆزرایەوە.<br>
+              یەکەم کەس بە کە یاری دەکات!
+            </div>
+          `;
+          return;
+        }
+
+        container.innerHTML = "";
+        let rank = 0;
+
+        snapshot.forEach((doc) => {
+          rank++;
+          const data = doc.data();
+          const isCurrentUser = currentUser && doc.id === currentUser.uid;
+
+          let rankClass = "";
+          if (rank === 1) rankClass = "gold";
+          else if (rank === 2) rankClass = "silver";
+          else if (rank === 3) rankClass = "bronze";
+
+          let itemClass = "";
+          if (rank === 1) itemClass = "top1";
+          else if (rank === 2) itemClass = "top2";
+          else if (rank === 3) itemClass = "top3";
+          if (isCurrentUser) itemClass += " current";
+
+          const avatarHtml = data.photoURL
+            ? `<img class="leaderAvatar" src="${data.photoURL}" alt="${data.username}" onerror="this.outerHTML='<div class=\\'leaderAvatarPlaceholder\\'><i class=\\'fa-solid fa-user\\'></i></div>'">`
+            : `<div class="leaderAvatarPlaceholder"><i class="fa-solid fa-user"></i></div>`;
+
+          const item = document.createElement("div");
+          item.className = `leaderItem ${itemClass}`;
+          item.innerHTML = `
+            <div class="leaderRank ${rankClass}">${rank}</div>
+            ${avatarHtml}
+            <div class="leaderInfo">
+              <div class="leaderName">${data.username || 'یاریزان'} ${isCurrentUser ? '(تۆ)' : ''}</div>
+              <div class="leaderMeta">ئاستی ${data.level || 1} • ${data.xp || 0} خاڵ</div>
+            </div>
+            <div class="leaderScore">
+              <div class="leaderCorrect">${data.correctAnswers || 0}</div>
+              <div class="leaderLabel">ڕاست</div>
+            </div>
+          `;
+          container.appendChild(item);
+        });
+
+      } catch (err) {
+        console.error("Error loading leaderboard:", JSON.stringify(err));
+        container.innerHTML = `
+          <div class="leaderEmpty">
+            <i class="fa-solid fa-exclamation-triangle"></i><br>
+            هەڵەیەک ڕوویدا لە بارکردنی پلەبەندی
+          </div>
+        `;
+      }
+    }
+
+    // =========================================
     // Auth Functions
     // =========================================
     function showAuth() {
@@ -1561,76 +1832,52 @@
     }
 
     function hideAuth(ev) {
-      if (ev && ev.target && !ev.target.classList.contains("authOverlay")) return;
+      if (ev && ev.target && !ev.target.classList.contains("authOverlay") && ev.target.tagName !== "BUTTON") return;
       el("#authOverlay").classList.remove("show");
       el("#authError").classList.remove("show");
     }
 
-    function toggleAuthMode() {
-      authMode = authMode === "login" ? "register" : "login";
-
-      if (authMode === "register") {
-        el("#authTitle").textContent = "دروستکردنی هەژمار";
-        el("#authDesc").textContent = "هەژمارێک دروست بکە بۆ پاشەکەوتکردنی ئاست و خاڵەکانت";
-        el("#authUsername").style.display = "";
-        el("#authBtn").textContent = "دروستکردن";
-        el("#authSwitch").innerHTML = 'هەژمارت هەیە؟ <a onclick="toggleAuthMode()">چوونەژوورەوە</a>';
-      } else {
-        el("#authTitle").textContent = "چوونەژوورەوە";
-        el("#authDesc").textContent = "بۆ پاشەکەوتکردنی ئاست و خاڵەکانت، چوونەژوورەوە";
-        el("#authUsername").style.display = "none";
-        el("#authBtn").textContent = "چوونەژوورەوە";
-        el("#authSwitch").innerHTML = 'هەژمارت نیە؟ <a onclick="toggleAuthMode()">دروستکردنی هەژمار</a>';
-      }
-
-      el("#authError").classList.remove("show");
-    }
-
-    async function handleAuth() {
-      const email = el("#authEmail").value.trim();
-      const password = el("#authPassword").value;
-      const username = el("#authUsername").value.trim();
-
-      if (!email || !password) {
-        showAuthError("تکایە ئیمەیڵ و وشەی نهێنی داخڵ بکە");
-        return;
-      }
-
-      if (authMode === "register" && !username) {
-        showAuthError("تکایە ناوی بەکارهێنەر داخڵ بکە");
-        return;
-      }
-
-      el("#authBtn").disabled = true;
+    async function handleGoogleLogin() {
+      el("#googleBtn").disabled = true;
 
       try {
-        if (authMode === "register") {
-          const cred = await auth.createUserWithEmailAndPassword(email, password);
-          await db.collection("users").doc(cred.user.uid).set({
-            username: username,
+        const result = await auth.signInWithPopup(googleProvider);
+        const user = result.user;
+
+        // Check if user document exists
+        const userDoc = await db.collection("users").doc(user.uid).get();
+
+        if (!userDoc.exists) {
+          // Create new user document
+          await db.collection("users").doc(user.uid).set({
+            username: user.displayName || user.email.split("@")[0],
+            photoURL: user.photoURL || "",
             level: 1,
             xp: 0,
             correctAnswers: 0,
             createdAt: firebase.firestore.FieldValue.serverTimestamp()
           });
-          toast("✅ هەژمار دروست کرا!");
         } else {
-          await auth.signInWithEmailAndPassword(email, password);
-          toast("✅ چوویتە ژوورەوە!");
+          // Update photo URL if changed
+          if (user.photoURL && user.photoURL !== userDoc.data().photoURL) {
+            await db.collection("users").doc(user.uid).update({
+              photoURL: user.photoURL
+            });
+          }
         }
-        hideAuth({target: {classList: {contains: () => true}}});
+
+        toast("✅ چوویتە ژوورەوە!");
+        hideAuth();
       } catch (err) {
+        console.error("Google login error:", JSON.stringify(err));
         let msg = "هەڵەیەک ڕوویدا";
-        if (err.code === "auth/email-already-in-use") msg = "ئەم ئیمەیڵە پێشتر بەکارهاتووە";
-        if (err.code === "auth/invalid-email") msg = "ئیمەیڵ دروست نیە";
-        if (err.code === "auth/weak-password") msg = "وشەی نهێنی دەبێت لانیکەم ٦ پیت بێت";
-        if (err.code === "auth/user-not-found") msg = "هەژمار نەدۆزرایەوە";
-        if (err.code === "auth/wrong-password") msg = "وشەی نهێنی هەڵەیە";
-        if (err.code === "auth/invalid-credential") msg = "ئیمەیڵ یان وشەی نهێنی هەڵەیە";
+        if (err.code === "auth/popup-closed-by-user") msg = "پەنجەرەکە داخرا";
+        if (err.code === "auth/cancelled-popup-request") msg = "داواکاری هەڵوەشایەوە";
+        if (err.code === "auth/popup-blocked") msg = "پەنجەرە بلۆک کرا. تکایە Pop-up ڕێگەپێبدە";
         showAuthError(msg);
       }
 
-      el("#authBtn").disabled = false;
+      el("#googleBtn").disabled = false;
     }
 
     function showAuthError(msg) {
@@ -1654,12 +1901,13 @@
         if (doc.exists) {
           const data = doc.data();
           userData.username = data.username || "";
+          userData.photoURL = data.photoURL || "";
           userData.level = data.level || 1;
           userData.xp = data.xp || 0;
           userData.correctAnswers = data.correctAnswers || 0;
         }
       } catch (err) {
-        console.error("Error loading user data:", err);
+        console.error("Error loading user data:", JSON.stringify(err));
       }
     }
 
@@ -1672,7 +1920,7 @@
           correctAnswers: userData.correctAnswers
         });
       } catch (err) {
-        console.error("Error saving user data:", err);
+        console.error("Error saving user data:", JSON.stringify(err));
       }
     }
 
@@ -1682,16 +1930,32 @@
 
       if (user) {
         await loadUserData(user.uid);
-        el("#userNameDisplay").textContent = userData.username || user.email.split("@")[0];
+
+        // Update UI with user info
+        const displayName = userData.username || user.displayName || user.email.split("@")[0];
+        el("#userNameDisplay").textContent = displayName;
+
+        // Show avatar if available
+        if (user.photoURL || userData.photoURL) {
+          el("#userAvatar").src = user.photoURL || userData.photoURL;
+          el("#userAvatar").style.display = "";
+          el("#userIcon").style.display = "none";
+        } else {
+          el("#userAvatar").style.display = "none";
+          el("#userIcon").style.display = "";
+        }
+
         el("#userLvlBadge").style.display = "";
         el("#userLvlBadge").textContent = "Lvl " + userData.level;
         el("#dropProfile").style.display = "";
-        el("#dropUsername").textContent = userData.username || user.email.split("@")[0];
+        el("#dropUsername").textContent = displayName;
         el("#dropLogin").style.display = "none";
         el("#dropLogout").style.display = "";
       } else {
-        userData = { username: "", level: 1, xp: 0, correctAnswers: 0, questionsAnswered: [] };
+        userData = { username: "", photoURL: "", level: 1, xp: 0, correctAnswers: 0, questionsAnswered: [] };
         el("#userNameDisplay").textContent = "چوونەژوورەوە";
+        el("#userAvatar").style.display = "none";
+        el("#userIcon").style.display = "";
         el("#userLvlBadge").style.display = "none";
         el("#dropProfile").style.display = "none";
         el("#dropLogin").style.display = "";
